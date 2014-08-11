@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html ng-app="TestApp">
   <head>
+    <style>
+      body {
+        font-family: 'Oswald', sans-serif;
+      }
+    </style>
   </head>
   <body webfont-loader="Oswald:n4,n7">
-    <p>This is the Oswald web font</p>
+    <div ng-controller="TestController">
+      <p>This is the Oswald web font</p>
+    </div>
     <script src="https://code.angularjs.org/1.2.9/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
     <script src="webfontLoader.js"></script>
     <script>
-      var app = angular.module('TestApp', ['webfont-loader]);
+      var app = angular.module('TestApp', ['webfont-loader']);
+      app.controller('TestController', function($scope) {
+        $scope.$on('webfontLoader.loaded', function() {
+          alert('font loaded!');
+        });
+      })
     </script>
   </body>
 </html>
